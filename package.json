@@ -1,0 +1,143 @@
+{
+  "name": "codehelper",
+  "displayName": "CodeHelper",
+  "description": "",
+  "version": "1.0.0",
+  "publisher": "zcy",
+  "engines": {
+    "vscode": "^1.93.1"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/main.js",
+  "contributes": {
+    "commands": [
+    ],
+    "submenus": [
+    ],
+    "menus": {
+      "editor/context": [
+      ],
+      "explorer/context": [
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "CodeHelper",
+      "properties": {
+        "codehelper.author": {
+          "type": "string",
+          "default": "CodeHelper",
+          "description": "作者名"
+        },
+        "codehelper.AutoHeadCommentEnable": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用自动添加头部注释功能"
+        },
+        "codehelper.ColorHighLightEnable": {
+          "type": "boolean",
+          "default": false,
+          "description": "是否启用颜色高亮，启用后，代码的中十六进制颜色编码会渲染上对应的颜色背景"
+        },
+        "codehelper.CommentColorEnable": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用注释标签高亮"
+        },
+
+        "codehelper.ColorHighLightParam": {
+          "type": "object",
+          "default": {
+            "InvertTextColor": true,
+            "UseBorder": true,
+            "BorderStyle": "solid",
+            "BorderWidth": "2px",
+            "BorderRadius": "2px"
+          },
+          "description": "颜色高亮样式配置，可以设置边框等样式"
+        },
+        "codehelper.CommentColorTag": {
+          "type": "array",
+          "default": [
+            {
+              "tag": "TODO",
+              "color": "#FF8C00",
+              "strikethrough": false,
+              "underline": false,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "tag": "!",
+              "color": "#FF2D00",
+              "strikethrough": false,
+              "underline": false,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "tag": "?",
+              "color": "#3498DB",
+              "strikethrough": false,
+              "underline": false,
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "description": "自定义注释标签的颜色和样式"
+        },
+        "codehelper.AutoHeadCommentParam": {
+          "type": "array",
+          "default": [
+            {
+              "language": "lua",
+              "comment": "--[[\n * @author      : ${author}\n * @created     : ${date}\n * @type        : lualib, single service, multi service\n * @description : \n]]"
+            },
+            {
+              "language": "cs",
+              "comment": "// ==========================================================================================\n// Author      : ${author}\n// Created     : ${date}\n// Description : \n// ==========================================================================================\n"
+            },
+            {
+              "language": "ts",
+              "comment": "// ==========================================================================================\n// Author      : ${author}\n// Created     : ${date}\n// Description : \n// ==========================================================================================\n"
+            }
+          ],
+          "description": "自动添加头部注释的配置, 如果其中包含${author}或${date}，则会在创建文件时自动替换为当前作者和日期"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.93.1",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.16.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "json5": "^2.2.3"
+  }
+}

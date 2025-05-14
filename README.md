@@ -1,2 +1,3 @@
-# CodeHelper
-自用vscode插件
+# README
+
+设置 -> 搜索 `CodeHelper` 进行配置
